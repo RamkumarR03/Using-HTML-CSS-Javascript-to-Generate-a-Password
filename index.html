@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f1a9a9;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            background: #fa0303;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 253, 8, 0.1);
+            border: 5px solid blueviolet;
+        }
+
+        input,
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #password {
+            display: block;
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            word-break: break-all;
+            border:1px solid aqua;
+            background-color: aqua;
+            width: 100%;
+            justify-content: center;
+            text-align: center;
+            color: blue;
+        }
+        label{
+            color: chartreuse;
+            font-weight: bolder;
+        }
+        h1{
+            color: lime;
+        }
+        input:hover{
+            background-color: grey;
+        }
+        button{
+            background-color: blue;
+            color: white;
+        }
+        button:hover{
+            background-color: darkblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Password Generator</h1><br>
+        <label for="">Name</label>
+        <input type="text" id="name" required><br>
+        <label for="">Email</label>
+        <input type="email" id="email" required><br>
+        <input type="number" id="length" placeholder="Enter length" min="1" max="2">
+        <button onclick="generatePassword()">Generate Password</button>
+        <span id="password"></span>
+    </div>
+
+    <script>
+       
+        function generatePassword() {
+            const length = parseInt(document.getElementById('length').value);
+            if ((isNaN(length) || length <= 0) && (name==null) ) {
+                document.getElementById('password').innerText = 'Please enter a valid length';
+                return;
+            }
+            const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=';
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * charset.length);
+                password = password + charset[randomIndex];
+            }
+            document.getElementById('password').innerText = `Strong password : ${password}`;
+
+            function message(){
+            var name=document.getElementById("name").value;
+            var email=document.getElementById("email").value;
+            if(name=='' && email==''){
+                alert("Please fill the required field");
+            }
+        }
+        message()
+        }
+    </script>
+</body>
+
+</html>
